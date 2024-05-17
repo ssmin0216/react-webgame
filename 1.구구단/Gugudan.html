@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>구구단</title>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  'use strict';
+  const GuGuDan = () => {
+    const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
+    const [second, setSecond] = React.useState(Math.ceil(Math.random()*9));
+    const [value, setValue] = React.useState('');
+    const [result, setResult] = React.useState('');
+    const valueRef = React.useRef(null);
+
+    const onClickButton = () => {
+      if(first*second === Number(value)) {
+        setResult('정답 : ' + Number(value));
+        setFirst(Math.ceil(Math.random()*9));
+        setSecond(Math.ceil(Math.random()*9));
+      } else {
+        setResult('땡');
+      }
+      setValue('');
+      valueRef.current.focus();
+    };
+
+    return (
+      <React.Fragment>
+        <div>{first} 곱하기 {second}는?</div>
+        <input type='Number' ref={valueRef} value={value} onChange={(e)=>setValue(e.target.value)}/>
+        <input type='button' value='입력!' onClick={onClickButton}/>
+        <div>{result}</div>
+      </React.Fragment>
+    );
+  };
+</script>
+<script type="text/babel">
+  ReactDOM.render(<GuGuDan/>, document.querySelector('#root'));
+</script>
+</body>
+</html>
