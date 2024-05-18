@@ -1,8 +1,12 @@
 import { useRef, useEffect } from 'react';
 
+// 실제 실행할 코드
+// const [isRunning, setIsrunning] = useState(true);
 // useInterval(() => {
-//     
-// }, 1000);
+//     console.log('hello');
+// }, isRunning ? 1000 : null);
+
+// 실제 실행할 코드를 savedCallback이라는 ref에 저장함.
 function useInterval (callback, delay) {
     const savedCallback = useRef();
 
